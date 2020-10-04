@@ -1,0 +1,38 @@
+/*
+  KeyboardAndMouseControl
+@
+  Controls the mouse & keyboard for Ardunio Leonardo Pro Micro@
+@
+  created 3 Sep 2020
+  modified 4 Sep 2020
+  by Vignesh Kumar B
+*/
+
+#include "Keyboard.h"
+#include "Mouse.h"
+
+// set pin numbers for the five buttons:
+const int mouseButton = 6;
+
+void setup() { // initialize the buttons' inputs:
+
+  pinMode(mouseButton, INPUT);
+  
+  //Serial.begin(9600);
+  //while(!Serial);
+
+  // initialize mouse control:
+  Mouse.begin();
+  Keyboard.begin();
+}
+
+void loop() {
+
+  if (digitalRead(mouseButton) == HIGH) {
+    Keyboard.write('@');
+    digitalWrite(mouseButton, LOW);   delay(10000); //10sec
+  }
+  
+  digitalWrite(mouseButton, HIGH);    delay(10000);  //10sec
+  delay(random(5000, 10000));  // 5 to 10 seconds delay@
+}
